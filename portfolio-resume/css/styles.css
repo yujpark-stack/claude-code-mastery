@@ -1,0 +1,224 @@
+/* ============================================================================
+   GOOGLE FONTS IMPORT
+   ============================================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&family=Open+Sans:wght@400;500;600&display=swap');
+
+/* ============================================================================
+   CSS CUSTOM PROPERTIES (DESIGN TOKENS)
+   ============================================================================ */
+:root {
+  --color-primary: #059669;
+  --color-secondary: #10b981;
+  --color-dark: #1f2937;
+  --color-light: #f3f4f6;
+  --color-accent: #f59e0b;
+  --color-text-dark: #111827;
+  --color-text-light: #6b7280;
+  --color-border: #e5e7eb;
+
+  /* Light mode tokens */
+  --bg-light: #faf7f2;
+  --bg-surface: #ffffff;
+  --text-primary: #111827;
+  --text-muted: #6b7280;
+  --border-light: #e5e7eb;
+
+  --font-heading: 'Poppins', 'Inter', sans-serif;
+  --font-body: 'Open Sans', sans-serif;
+
+  --transition-base: all 0.3s ease;
+  --transition-fast: all 0.2s ease;
+}
+
+/* Dark mode tokens */
+.dark {
+  --bg-light: #0f172a;
+  --bg-surface: #1e293b;
+  --text-primary: #f1f5f9;
+  --text-muted: #94a3b8;
+  --border-light: #334155;
+}
+
+/* ============================================================================
+   GLOBAL STYLES & SMOOTH SCROLL
+   ============================================================================ */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 64px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text-dark);
+  line-height: 1.6;
+  background-color: #ffffff;
+}
+
+/* ============================================================================
+   NAVIGATION STYLES
+   ============================================================================ */
+.nav-link {
+  position: relative;
+  border-bottom: 2px solid transparent;
+  transition: border-color var(--transition-base);
+  color: var(--color-text-dark);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  border-bottom-color: var(--color-primary);
+}
+
+.nav-active {
+  border-bottom-color: var(--color-primary);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* Mobile Menu Animation */
+#mobile-menu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-base) ease;
+}
+
+#mobile-menu.open {
+  max-height: 400px;
+}
+
+/* Menu Button Icon Animation */
+#menu-btn svg {
+  transition: transform var(--transition-fast) ease;
+}
+
+#menu-btn[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+
+/* ============================================================================
+   TIMELINE STYLES (EXPERIENCE SECTION)
+   ============================================================================ */
+.timeline-item {
+  position: relative;
+  padding-left: 32px;
+  border-left: 2px solid var(--color-primary);
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  border: 2px solid var(--bg-surface);
+  box-shadow: 0 0 0 2px var(--color-primary);
+}
+
+.timeline-item:hover {
+  padding-left: 36px;
+  border-left-width: 3px;
+}
+
+/* ============================================================================
+   SKILL BADGE STYLES
+   ============================================================================ */
+.skill-badge {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: var(--transition-fast);
+  cursor: default;
+}
+
+.skill-badge:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.skill-badge.frontend {
+  background-color: #dbeafe;
+  color: var(--color-primary);
+}
+
+.dark .skill-badge.frontend {
+  background-color: #1e3a8a;
+  color: #60a5fa;
+}
+
+.skill-badge.backend {
+  background-color: #dcfce7;
+  color: var(--color-secondary);
+}
+
+.dark .skill-badge.backend {
+  background-color: #064e3b;
+  color: #6ee7b7;
+}
+
+.skill-badge.tools {
+  background-color: #fef3c7;
+  color: var(--color-accent);
+}
+
+.dark .skill-badge.tools {
+  background-color: #78350f;
+  color: #fcd34d;
+}
+
+/* ============================================================================
+   FADE-IN ANIMATION (SCROLL-TRIGGERED)
+   ============================================================================ */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================================
+   PRINT STYLES (PDF EXPORT)
+   ============================================================================ */
+@media print {
+  header,
+  .nav-header,
+  #menu-btn,
+  #btn-download-pdf {
+    display: none !important;
+  }
+
+  body {
+    background-color: #ffffff;
+  }
+
+  section {
+    page-break-inside: avoid;
+    background-color: transparent !important;
+  }
+
+  .skill-badge {
+    border: 1px solid var(--color-border);
+    background-color: transparent !important;
+    color: var(--color-text-dark) !important;
+  }
+
+  a {
+    color: var(--color-text-dark);
+    text-decoration: underline;
+  }
+}
